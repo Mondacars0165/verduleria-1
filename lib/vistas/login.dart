@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:verduleria/servicios/auth.service.dart';
 import 'package:verduleria/vistas/homeadm.dart';
 import 'package:verduleria/vistas/homenrm.dart';
+import 'package:verduleria/servicios/productos.services.dart'; // Asegúrate de importar la clase ProductosService
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -34,7 +35,10 @@ class LoginScreen extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeNormalUser(authService: _authService),
+              builder: (context) => HomeNRM(
+                authService: _authService,
+                productosService: ProductosService(), // Aquí está la corrección
+              ),
             ),
           );
         }
