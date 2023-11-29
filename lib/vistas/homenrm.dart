@@ -3,6 +3,7 @@ import 'package:verduleria/servicios/productos.services.dart';
 import 'package:verduleria/vistas/verproductos.dart';
 import 'package:verduleria/vistas/agregarproductos.dart';
 import 'package:verduleria/vistas/eliminarproductos.dart';
+import 'package:verduleria/vistas/preciounitarios.dart'; // Importa el nuevo archivo de vista
 import 'package:verduleria/servicios/auth.service.dart';
 
 class HomeNRM extends StatelessWidget {
@@ -19,7 +20,10 @@ class HomeNRM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Menú principal'),
+        title: Text(
+          'Menú principal',
+          style: TextStyle(fontSize: 28),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -35,7 +39,6 @@ class HomeNRM extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Bienvenido, Usuario Normal'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -60,7 +63,7 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Ver Compras'),
+              child: Text('Ver Compras Realizadas'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -74,7 +77,21 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Eliminar Compra'),
+              child: Text('Eliminar Compras'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PreciosUnitariosScreen(
+                      productosService: _productosService,
+                    ),
+                  ),
+                );
+              },
+              child: Text('Precios'), // Nuevo botón
             ),
             // Agrega más botones u opciones según sea necesario
           ],

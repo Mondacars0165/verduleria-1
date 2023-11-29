@@ -25,11 +25,16 @@ class ProductosService {
     int cantidad,
     int valor,
   ) async {
+    DateTime now = DateTime.now(); // Obtiene la fecha y hora actual
+    String fechaIngreso =
+        '${now.year}-${now.month}-${now.day}'; // Formato: AÑO-MES-DÍA
+
     DocumentReference docRef = await db.collection('productos').add({
       'nombre': nombre,
       'unidad': unidad,
       'cantidad': cantidad,
       'valor': valor,
+      'fechaIngreso': fechaIngreso, // Agrega la fecha al documento
     });
 
     // Devolver el Document ID asignado por Firestore

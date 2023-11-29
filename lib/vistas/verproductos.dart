@@ -1,4 +1,3 @@
-// verproductos.dart
 import 'package:flutter/material.dart';
 import 'package:verduleria/servicios/productos.services.dart';
 
@@ -12,8 +11,13 @@ class VerProductosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ver Productos'),
+        title: Text(
+          'Productos Comprados',
+          style: TextStyle(fontSize: 28),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: FutureBuilder(
         future: _productosService.getProductos(),
@@ -31,36 +35,46 @@ class VerProductosScreen extends StatelessWidget {
               );
             }
 
-            // Construir la matriz de columnas
-            return DataTable(
-              columns: [
-                DataColumn(label: Text('Nombre')),
-                DataColumn(label: Text('Unidad')),
-                DataColumn(label: Text('Cantidad')),
-                DataColumn(label: Text('Valor')),
-              ],
-              rows: productos.map((producto) {
-                // Verifica si el objeto es una función y ejecútala para obtener el mapa de datos
-                if (producto is Function) {
-                  producto = producto();
-                }
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                columns: [
+                  DataColumn(
+                      label: Text('Nombre', style: TextStyle(fontSize: 19))),
+                  DataColumn(
+                      label: Text('Unidad', style: TextStyle(fontSize: 19))),
+                  DataColumn(
+                      label: Text('Cantidad', style: TextStyle(fontSize: 19))),
+                  DataColumn(
+                      label: Text('Valor', style: TextStyle(fontSize: 19))),
+                  DataColumn(
+                      label: Text('Fecha', style: TextStyle(fontSize: 19))),
+                ],
+                rows: productos.map((producto) {
+                  if (producto is Function) {
+                    producto = producto();
+                  }
 
-                // Verifica si el objeto es nulo antes de acceder a sus propiedades
-                String nombre = producto?['nombre'] ?? 'Nombre no disponible';
-                String unidad = producto?['unidad'] ?? 'Unidad no disponible';
-                int cantidad = producto?['cantidad'] ?? 0;
-                int valor = producto?['valor'] ?? 0;
+                  String nombre = producto?['nombre'] ?? 'Nombre no disponible';
+                  String unidad = producto?['unidad'] ?? 'Unidad no disponible';
+                  int cantidad = producto?['cantidad'] ?? 0;
+                  int valor = producto?['valor'] ?? 0;
+                  String fecha =
+                      producto?['fechaIngreso'] ?? 'Fecha no disponible';
 
-                // Construir una fila de datos
-                return DataRow(
-                  cells: [
-                    DataCell(Text(nombre)),
-                    DataCell(Text(unidad)),
-                    DataCell(Text(cantidad.toString())),
-                    DataCell(Text(valor.toString())),
-                  ],
-                );
-              }).toList(),
+                  return DataRow(
+                    cells: [
+                      DataCell(Text(nombre, style: TextStyle(fontSize: 18))),
+                      DataCell(Text(unidad, style: TextStyle(fontSize: 18))),
+                      DataCell(Text(cantidad.toString(),
+                          style: TextStyle(fontSize: 18))),
+                      DataCell(Text(valor.toString(),
+                          style: TextStyle(fontSize: 18))),
+                      DataCell(Text(fecha, style: TextStyle(fontSize: 18))),
+                    ],
+                  );
+                }).toList(),
+              ),
             );
           }
         },
