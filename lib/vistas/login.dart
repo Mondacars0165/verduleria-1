@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:verduleria/servicios/auth.service.dart';
 import 'package:verduleria/vistas/homeadm.dart';
 import 'package:verduleria/vistas/homenrm.dart';
-import 'package:verduleria/servicios/productos.services.dart'; // Asegúrate de importar la clase ProductosService
+import 'package:verduleria/servicios/productos.services.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
       );
 
       if (userCredential.user != null) {
-        // Si el correo es admin@admin.cl, ir a HomeAdmin, de lo contrario, ir a HomeNormalUser
         if (userCredential.user!.email == 'admin@admin.cl') {
           Navigator.pushReplacement(
             context,
@@ -37,7 +36,7 @@ class LoginScreen extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => HomeNRM(
                 authService: _authService,
-                productosService: ProductosService(), // Aquí está la corrección
+                productosService: ProductosService(),
               ),
             ),
           );
@@ -54,38 +53,90 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Lo Mejor Del Campo',
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black)),
         centerTitle: true,
+        backgroundColor: Colors.lightGreen[200],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'Correo electrónico',
-                border: OutlineInputBorder(),
-              ),
+      body: SafeArea(
+        child: Container(
+          color: Colors.teal[200],
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.lightGreen[200],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Correo electrónico',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 12.0),
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        TextField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Contraseña',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 12.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.0),
+                ElevatedButton(
+                  onPressed: () async {
+                    await _signInWithEmailAndPassword(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.lightGreen[200],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+                  ),
+                  child: Text('Iniciar Sesión',
+                      style: TextStyle(color: Colors.black)),
+                ),
+              ],
             ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Contraseña',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 24.0),
-            ElevatedButton(
-              onPressed: () async {
-                await _signInWithEmailAndPassword(context);
-              },
-              child: Text('Iniciar Sesión'),
-            ),
-          ],
+          ),
         ),
       ),
     );
