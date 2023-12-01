@@ -31,7 +31,7 @@ class _IngresarComprasScreenState extends State<IngresarComprasScreen> {
         title: Text('Ingresar Compras'),
         centerTitle: true,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

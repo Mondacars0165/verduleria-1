@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:verduleria/servicios/productos.services.dart';
 
+class AppState {
+  static final AppState _instance = AppState._internal();
+
+  factory AppState() {
+    return _instance;
+  }
+
+  AppState._internal();
+
+  double _porcentajeGanancia = 0.0;
+
+  double get porcentajeGanancia => _porcentajeGanancia;
+
+  setPorcentajeGanancia(double porcentaje) {
+    _porcentajeGanancia = porcentaje;
+  }
+}
+
 class PreciosUnitariosScreen extends StatefulWidget {
   final ProductosService _productosService;
 
@@ -12,13 +30,15 @@ class PreciosUnitariosScreen extends StatefulWidget {
 }
 
 class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
+  final AppState _appState = AppState();
+
   late double _porcentajeGanancia;
   late double _precioVenta;
 
   @override
   void initState() {
     super.initState();
-    _porcentajeGanancia = 0.0;
+    _porcentajeGanancia = _appState.porcentajeGanancia;
     _precioVenta = 0.0;
   }
 
@@ -26,20 +46,25 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Precios',
-          style: TextStyle(fontSize: 20),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Precios',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(width: 20),
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                _mostrarDialogoPorcentajeGanancia();
+              },
+            ),
+          ],
         ),
-        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              _mostrarDialogoPorcentajeGanancia();
-            },
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
@@ -53,9 +78,9 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
         future: widget._productosService.getProductos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             List productos = snapshot.data as List;
 
@@ -70,7 +95,21 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
+                            child:
+                                Text('Fecha', style: TextStyle(fontSize: 19)))),
+                  ),
+                  DataColumn(
+                    label: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Center(
                             child: Text('Nombre',
+                                style: TextStyle(fontSize: 19)))),
+                  ),
+                  DataColumn(
+                    label: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Center(
+                            child: Text('Valor Venta',
                                 style: TextStyle(fontSize: 19)))),
                   ),
                   DataColumn(
@@ -84,22 +123,8 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
-                            child: Text('Precio Compra',
+                            child: Text('Valor Compra',
                                 style: TextStyle(fontSize: 19)))),
-                  ),
-                  DataColumn(
-                    label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text('Precio Venta',
-                                style: TextStyle(fontSize: 19)))),
-                  ),
-                  DataColumn(
-                    label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child:
-                                Text('Fecha', style: TextStyle(fontSize: 19)))),
                   ),
                 ],
                 rows: productos.map((producto) {
@@ -118,7 +143,17 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
+                              child: Text(fecha,
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
                               child: Text(nombre,
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(precioVenta.toStringAsFixed(2),
                                   style: TextStyle(fontSize: 18))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
@@ -129,16 +164,6 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(precioUnitario.toStringAsFixed(2),
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(precioVenta.toStringAsFixed(2),
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(fecha,
                                   style: TextStyle(fontSize: 18))))),
                     ],
                   );
@@ -175,6 +200,7 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
               onPressed: () {
                 double porcentaje =
                     double.tryParse(porcentajeController.text) ?? 0.0;
+                _appState.setPorcentajeGanancia(porcentaje);
                 setState(() {
                   _porcentajeGanancia = porcentaje;
                 });

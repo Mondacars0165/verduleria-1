@@ -23,9 +23,9 @@ class VerProductosScreen extends StatelessWidget {
         future: _productosService.getProductos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             List productos = snapshot.data as List;
 
@@ -38,17 +38,28 @@ class VerProductosScreen extends StatelessWidget {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
+                columnSpacing: 20, // Ajusta el espacio entre columnas
                 columns: [
                   DataColumn(
-                      label: Text('Nombre', style: TextStyle(fontSize: 19))),
+                      label: Expanded(
+                          child:
+                              Text('Nombre', style: TextStyle(fontSize: 19)))),
                   DataColumn(
-                      label: Text('Unidad', style: TextStyle(fontSize: 19))),
+                      label: Expanded(
+                          child:
+                              Text('Unidad', style: TextStyle(fontSize: 19)))),
                   DataColumn(
-                      label: Text('Cantidad', style: TextStyle(fontSize: 19))),
+                      label: Expanded(
+                          child: Text('Cantidad',
+                              style: TextStyle(fontSize: 19)))),
                   DataColumn(
-                      label: Text('Valor', style: TextStyle(fontSize: 19))),
+                      label: Expanded(
+                          child:
+                              Text('Valor', style: TextStyle(fontSize: 19)))),
                   DataColumn(
-                      label: Text('Fecha', style: TextStyle(fontSize: 19))),
+                      label: Expanded(
+                          child:
+                              Text('Fecha', style: TextStyle(fontSize: 19)))),
                 ],
                 rows: productos.map((producto) {
                   if (producto is Function) {

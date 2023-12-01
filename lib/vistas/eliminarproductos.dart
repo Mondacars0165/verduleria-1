@@ -27,9 +27,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
         future: widget.productosService.getProductos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             List productos = snapshot.data as List;
 
@@ -42,45 +42,54 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                 columns: [
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text('Nombre',
-                                style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
                   ),
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child:
-                                Text('Fecha', style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text('Fecha', style: TextStyle(fontSize: 19)),
+                      ),
+                    ),
                   ),
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text('Cantidad',
-                                style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text('Nombre', style: TextStyle(fontSize: 19)),
+                      ),
+                    ),
                   ),
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child:
-                                Text('Valor', style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text('Valor', style: TextStyle(fontSize: 19)),
+                      ),
+                    ),
                   ),
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text('Unidad',
-                                style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text('Unidad', style: TextStyle(fontSize: 19)),
+                      ),
+                    ),
                   ),
                   DataColumn(
                     label: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text('Acciones',
-                                style: TextStyle(fontSize: 19)))),
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text('Cantidad', style: TextStyle(fontSize: 19)),
+                      ),
+                    ),
                   ),
                 ],
                 rows: productos.map((producto) {
@@ -94,31 +103,6 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
 
                   return DataRow(
                     cells: [
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(nombre,
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(fecha,
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(cantidad.toString(),
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(valor.toString(),
-                                  style: TextStyle(fontSize: 18))))),
-                      DataCell(Container(
-                          padding: EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(unidad,
-                                  style: TextStyle(fontSize: 18))))),
                       DataCell(
                         Container(
                           padding: EdgeInsets.all(10),
@@ -132,6 +116,31 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                           ),
                         ),
                       ),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(fecha,
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(nombre,
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(valor.toString(),
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(unidad,
+                                  style: TextStyle(fontSize: 18))))),
+                      DataCell(Container(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                              child: Text(cantidad.toString(),
+                                  style: TextStyle(fontSize: 18))))),
                     ],
                   );
                 }).toList(),
