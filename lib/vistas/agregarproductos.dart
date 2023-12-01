@@ -28,8 +28,13 @@ class _IngresarComprasScreenState extends State<IngresarComprasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ingresar Compras'),
+        title: Text(
+          'Ingresar Compras',
+          style: TextStyle(
+              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.lightGreen[200],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -45,32 +50,54 @@ class _IngresarComprasScreenState extends State<IngresarComprasScreen> {
             ElevatedButton(
               onPressed: () async {
                 // Obtén los valores del formulario
-                String nombre = nombreController.text;
+                String nombre = nombreController.text.trim();
                 int cantidad = int.tryParse(cantidadController.text) ?? 0;
                 int valor = int.tryParse(valorController.text) ?? 0;
 
-                // Ingresa el nuevo producto
-                await _productosService.ingresarProducto(
-                  nombre,
-                  unidadSeleccionada,
-                  cantidad,
-                  valor,
-                );
+                // Validación: asegúrate de que al menos el nombre, la cantidad y el valor estén llenos
+                if (nombre.isNotEmpty && cantidad > 0 && valor > 0) {
+                  // Ingresa el nuevo producto
+                  await _productosService.ingresarProducto(
+                    nombre,
+                    unidadSeleccionada,
+                    cantidad,
+                    valor,
+                  );
 
-                // Limpia los controladores después de ingresar el producto
-                nombreController.clear();
-                unidadSeleccionada = 'Unidad';
-                cantidadController.clear();
-                valorController.clear();
+                  // Limpia los controladores después de ingresar el producto
+                  nombreController.clear();
+                  unidadSeleccionada = 'Unidad';
+                  cantidadController.clear();
+                  valorController.clear();
 
-                // Muestra un mensaje de éxito
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Producto ingresado correctamente'),
-                  ),
-                );
+                  // Muestra un mensaje de éxito
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Producto ingresado correctamente'),
+                    ),
+                  );
+                } else {
+                  // Muestra un mensaje de error si algún campo está vacío
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Completa todos los campos antes de ingresar el producto'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
-              child: Text('Ingresar Producto'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Ingresar Producto',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
@@ -86,7 +113,9 @@ class _IngresarComprasScreenState extends State<IngresarComprasScreen> {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
         ),
         keyboardType: keyboardType,
       ),
@@ -114,7 +143,9 @@ class _IngresarComprasScreenState extends State<IngresarComprasScreen> {
         }).toList(),
         decoration: InputDecoration(
           labelText: 'Unidad',
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
         ),
       ),
     );

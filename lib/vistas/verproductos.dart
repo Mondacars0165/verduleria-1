@@ -13,11 +13,11 @@ class VerProductosScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Productos Comprados',
-          style: TextStyle(fontSize: 28),
+          style: TextStyle(
+              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.lightGreen[200],
       ),
       body: FutureBuilder(
         future: _productosService.getProductos(),
@@ -38,28 +38,33 @@ class VerProductosScreen extends StatelessWidget {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columnSpacing: 20, // Ajusta el espacio entre columnas
+                columnSpacing: 20,
                 columns: [
                   DataColumn(
-                      label: Expanded(
-                          child:
-                              Text('Nombre', style: TextStyle(fontSize: 19)))),
+                    label: Expanded(
+                      child: Text('Nombre', style: TextStyle(fontSize: 19)),
+                    ),
+                  ),
                   DataColumn(
-                      label: Expanded(
-                          child:
-                              Text('Unidad', style: TextStyle(fontSize: 19)))),
+                    label: Expanded(
+                      child: Text('Unidad', style: TextStyle(fontSize: 19)),
+                    ),
+                  ),
                   DataColumn(
-                      label: Expanded(
-                          child: Text('Cantidad',
-                              style: TextStyle(fontSize: 19)))),
+                    label: Expanded(
+                      child: Text('Cantidad', style: TextStyle(fontSize: 19)),
+                    ),
+                  ),
                   DataColumn(
-                      label: Expanded(
-                          child:
-                              Text('Valor', style: TextStyle(fontSize: 19)))),
+                    label: Expanded(
+                      child: Text('Valor', style: TextStyle(fontSize: 19)),
+                    ),
+                  ),
                   DataColumn(
-                      label: Expanded(
-                          child:
-                              Text('Fecha', style: TextStyle(fontSize: 19)))),
+                    label: Expanded(
+                      child: Text('Fecha', style: TextStyle(fontSize: 19)),
+                    ),
+                  ),
                 ],
                 rows: productos.map((producto) {
                   if (producto is Function) {

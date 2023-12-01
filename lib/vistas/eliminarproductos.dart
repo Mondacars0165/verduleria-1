@@ -17,11 +17,11 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
       appBar: AppBar(
         title: Text(
           'Eliminar Compra',
-          style: TextStyle(fontSize: 28),
+          style: TextStyle(
+              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.lightGreen[200],
       ),
       body: FutureBuilder(
         future: widget.productosService.getProductos(),
@@ -55,7 +55,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                     label: Container(
                       padding: EdgeInsets.all(10),
                       child: Center(
-                        child: Text('Fecha', style: TextStyle(fontSize: 19)),
+                        child: Text('Fecha',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)),
                       ),
                     ),
                   ),
@@ -63,7 +65,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                     label: Container(
                       padding: EdgeInsets.all(10),
                       child: Center(
-                        child: Text('Nombre', style: TextStyle(fontSize: 19)),
+                        child: Text('Nombre',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)),
                       ),
                     ),
                   ),
@@ -71,7 +75,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                     label: Container(
                       padding: EdgeInsets.all(10),
                       child: Center(
-                        child: Text('Valor', style: TextStyle(fontSize: 19)),
+                        child: Text('Valor',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)),
                       ),
                     ),
                   ),
@@ -79,7 +85,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                     label: Container(
                       padding: EdgeInsets.all(10),
                       child: Center(
-                        child: Text('Unidad', style: TextStyle(fontSize: 19)),
+                        child: Text('Unidad',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)),
                       ),
                     ),
                   ),
@@ -87,7 +95,9 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                     label: Container(
                       padding: EdgeInsets.all(10),
                       child: Center(
-                        child: Text('Cantidad', style: TextStyle(fontSize: 19)),
+                        child: Text('Cantidad',
+                            style:
+                                TextStyle(fontSize: 19, color: Colors.black)),
                       ),
                     ),
                   ),
@@ -120,27 +130,32 @@ class _EliminarProductoScreenState extends State<EliminarProductoScreen> {
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(fecha,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(nombre,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(valor.toString(),
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(unidad,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(cantidad.toString(),
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                     ],
                   );
                 }).toList(),

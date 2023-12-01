@@ -1,3 +1,4 @@
+// Importa la librería de servicios
 import 'package:flutter/material.dart';
 import 'package:verduleria/servicios/productos.services.dart';
 import 'package:verduleria/vistas/verproductos.dart';
@@ -21,8 +22,9 @@ class HomeNRM extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Menú principal',
-          style: TextStyle(fontSize: 28),
+          'Menú Principal',
+          style: TextStyle(
+              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         centerTitle: true,
         actions: [
@@ -34,6 +36,7 @@ class HomeNRM extends StatelessWidget {
             },
           ),
         ],
+        backgroundColor: Colors.lightGreen[200],
       ),
       body: Center(
         child: Column(
@@ -49,7 +52,17 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Ingresar Compras'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Ingresar Compras',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -63,7 +76,17 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Ver Compras Realizadas'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Ver Compras Realizadas',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -77,7 +100,17 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Eliminar Compras'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Eliminar Compras',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -91,7 +124,17 @@ class HomeNRM extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Precios'), // Nuevo botón
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Precios',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             // Agrega más botones u opciones según sea necesario
           ],

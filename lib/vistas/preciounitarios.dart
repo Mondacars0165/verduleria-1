@@ -51,7 +51,10 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
           children: [
             Text(
               'Precios',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             SizedBox(width: 20),
             IconButton(
@@ -62,7 +65,7 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
             ),
           ],
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.lightGreen[200],
         elevation: 0,
         actions: [
           Padding(
@@ -95,36 +98,41 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
-                            child:
-                                Text('Fecha', style: TextStyle(fontSize: 19)))),
+                            child: Text('Fecha',
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.black)))),
                   ),
                   DataColumn(
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
                             child: Text('Nombre',
-                                style: TextStyle(fontSize: 19)))),
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.black)))),
                   ),
                   DataColumn(
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
                             child: Text('Valor Venta',
-                                style: TextStyle(fontSize: 19)))),
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.black)))),
                   ),
                   DataColumn(
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
                             child: Text('Unidad',
-                                style: TextStyle(fontSize: 19)))),
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.black)))),
                   ),
                   DataColumn(
                     label: Container(
                         padding: EdgeInsets.all(10),
                         child: Center(
                             child: Text('Valor Compra',
-                                style: TextStyle(fontSize: 19)))),
+                                style: TextStyle(
+                                    fontSize: 19, color: Colors.black)))),
                   ),
                 ],
                 rows: productos.map((producto) {
@@ -144,27 +152,32 @@ class _PreciosUnitariosScreenState extends State<PreciosUnitariosScreen> {
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(fecha,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(nombre,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(precioVenta.toStringAsFixed(2),
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(unidad,
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                       DataCell(Container(
                           padding: EdgeInsets.all(10),
                           child: Center(
                               child: Text(precioUnitario.toStringAsFixed(2),
-                                  style: TextStyle(fontSize: 18))))),
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black))))),
                     ],
                   );
                 }).toList(),
