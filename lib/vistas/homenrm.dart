@@ -1,10 +1,12 @@
-// Importa la librería de servicios
+// Importa las librerías necesarias
 import 'package:flutter/material.dart';
 import 'package:verduleria/servicios/productos.services.dart';
 import 'package:verduleria/vistas/verproductos.dart';
 import 'package:verduleria/vistas/agregarproductos.dart';
 import 'package:verduleria/vistas/eliminarproductos.dart';
-import 'package:verduleria/vistas/preciounitarios.dart'; // Importa el nuevo archivo de vista
+import 'package:verduleria/vistas/preciounitarios.dart';
+import 'package:verduleria/vistas/hacercaja.dart';
+import 'package:verduleria/vistas/historial.dart'; // Importa la nueva vista
 import 'package:verduleria/servicios/auth.service.dart';
 
 class HomeNRM extends StatelessWidget {
@@ -24,7 +26,10 @@ class HomeNRM extends StatelessWidget {
         title: Text(
           'Menú Principal',
           style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
         actions: [
@@ -136,7 +141,51 @@ class HomeNRM extends StatelessWidget {
                 style: TextStyle(color: Colors.black),
               ),
             ),
-            // Agrega más botones u opciones según sea necesario
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HacerCajaScreen(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Hacer Caja',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        Proximamente(), // Agrega el nuevo botón
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightGreen[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+              ),
+              child: Text(
+                'Historial de Cajas',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
           ],
         ),
       ),
