@@ -1,16 +1,18 @@
+Armin Herrera 
 # verduleria
 
-A new Flutter project.
+Aplicacion de organizacion y registro para insumos de una verduleria , con la funcionalidad de;
+1) guardar compras
+2) ver compras
+3) eliminar compras
+4) separacion de precios unitarios (registro ejemplo 10 cajas , saca precio unitario de caja)
+5) calculo de porcetanje de margen al precio unitario (%)
+6) guardado de ventas generales diarias
+7) calculo de caja total al dia
+8) guardado de de ventas totales por dia
+
 
 ## Getting Started
+Aplicacion movil de android , ios y web para administracion de verduleria , utiliza como herramienta principal para front-end widget de Flutter, Backend realiado con poticiones a la Base de datos en Firebase de Google desarrollado en Dart.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
