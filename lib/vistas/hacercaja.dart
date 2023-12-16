@@ -71,7 +71,7 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
                           NumberFormat.currency(
                             symbol: '\$',
                             decimalDigits: 2,
-                          ).format(producto['valor'] ?? 0.0),
+                          ).format(producto['valor'] ?? 0),
                         ),
                         trailing: IconButton(
                           icon: Icon(Icons.delete),
@@ -99,7 +99,7 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
                               double montoTotal =
                                   _calcularMontoTotal(snapshot.data ?? []);
                               return Text(
-                                'Monto Total: $montoTotal',
+                                'Monto Total: ${NumberFormat.currency(symbol: '\$', decimalDigits: 2).format(montoTotal)}',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -153,7 +153,9 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
             ElevatedButton(
               onPressed: () async {
                 String nombre = nombreController.text.trim();
-                int valor = int.tryParse(valorController.text) ?? 0;
+                double valorDouble =
+                    double.tryParse(valorController.text) ?? 0.0;
+                int valor = valorDouble.round(); // Convertir a entero
 
                 if (nombre.isNotEmpty && valor > 0) {
                   await _cajaService.ingresarRegistro(
