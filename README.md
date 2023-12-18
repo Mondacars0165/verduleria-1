@@ -1,4 +1,4 @@
-Descripción
+#Descripción
 La aplicación de Verdulería es una herramienta de organización y registro diseñada para simplificar la gestión de insumos en una verdulería. Con funcionalidades clave como el registro de compras, visualización, eliminación de compras, cálculo de precios unitarios, porcentaje de margen, y un seguimiento detallado de las ventas diarias, la aplicación busca mejorar la eficiencia operativa y proporcionar una visión clara de las transacciones comerciales.
 
 Funcionalidades Principales
