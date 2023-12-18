@@ -14,6 +14,7 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
   final CajaService _cajaService = CajaService();
 
   static DateTime? selectedDate;
+  bool cajaCerrada = false;
 
   @override
   Widget build(BuildContext context) {
@@ -109,14 +110,21 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
                           ),
                         ),
                         ElevatedButton(
-                          onPressed: () async {
-                            await _cajaService.guardarTotalCaja(selectedDate!);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Datos guardados correctamente'),
-                              ),
-                            );
-                          },
+                          onPressed: cajaCerrada
+                              ? null
+                              : () async {
+                                  await _cajaService
+                                      .guardarTotalCaja(selectedDate!);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content:
+                                          Text('Datos guardados correctamente'),
+                                    ),
+                                  );
+                                  setState(() {
+                                    cajaCerrada = true;
+                                  });
+                                },
                           child: Text('Guardar'),
                         ),
                       ],
@@ -137,17 +145,24 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Agregar Registro'),
-          content: Column(
-            children: [
-              TextField(
-                controller: nombreController,
-                decoration: InputDecoration(labelText: 'Nombre'),
-              ),
-              TextField(
-                controller: valorController,
-                decoration: InputDecoration(labelText: 'Valor'),
-              ),
-            ],
+          content: Container(
+            width: MediaQuery.of(context).size.width *
+                0.8, // Use 80% of the screen width
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nombreController,
+                  decoration: InputDecoration(labelText: 'Nombre'),
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: valorController,
+                  keyboardType: TextInputType.number, // Set numeric keyboard
+                  decoration: InputDecoration(labelText: 'Valor'),
+                ),
+              ],
+            ),
           ),
           actions: <Widget>[
             ElevatedButton(
@@ -210,6 +225,8 @@ class _HacerCajaScreenState extends State<HacerCajaScreen> {
     if (picked != null) {
       setState(() {
         selectedDate = picked;
+        cajaCerrada =
+            false; // Reiniciar el estado al seleccionar una nueva fecha
       });
     }
   }

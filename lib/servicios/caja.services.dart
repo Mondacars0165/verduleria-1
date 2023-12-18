@@ -59,6 +59,7 @@ class CajaService {
       total += (doc.data()!['valor'] ?? 0).toDouble();
     }
 
+    print('Monto total en $formattedDate: $total');
     return total;
   }
 }

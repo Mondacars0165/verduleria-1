@@ -14,7 +14,10 @@ class VerProductosScreen extends StatelessWidget {
         title: Text(
           'Productos Comprados',
           style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.lightGreen[200],
@@ -39,34 +42,55 @@ class VerProductosScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: DataTable(
                 columnSpacing: 20,
+                dataRowHeight: 60, // Altura de las filas
+                headingRowHeight: 70, // Altura de la fila de encabezado
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black), // Borde de la tabla
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 columns: [
                   DataColumn(
-                    label: Expanded(
+                    label: Container(
+                      width: 150,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.lightGreen[100],
                       child: Text('Nombre', style: TextStyle(fontSize: 19)),
                     ),
                   ),
                   DataColumn(
-                    label: Expanded(
+                    label: Container(
+                      width: 100,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.lightGreen[100],
                       child: Text('Unidad', style: TextStyle(fontSize: 19)),
                     ),
                   ),
                   DataColumn(
-                    label: Expanded(
+                    label: Container(
+                      width: 100,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.lightGreen[100],
                       child: Text('Cantidad', style: TextStyle(fontSize: 19)),
                     ),
                   ),
                   DataColumn(
-                    label: Expanded(
+                    label: Container(
+                      width: 100,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.lightGreen[100],
                       child: Text('Valor', style: TextStyle(fontSize: 19)),
                     ),
                   ),
                   DataColumn(
-                    label: Expanded(
+                    label: Container(
+                      width: 150,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.lightGreen[100],
                       child: Text('Fecha', style: TextStyle(fontSize: 19)),
                     ),
                   ),
                 ],
-                rows: productos.map((producto) {
+                rows: productos.map<DataRow>((producto) {
                   if (producto is Function) {
                     producto = producto();
                   }
@@ -80,13 +104,39 @@ class VerProductosScreen extends StatelessWidget {
 
                   return DataRow(
                     cells: [
-                      DataCell(Text(nombre, style: TextStyle(fontSize: 18))),
-                      DataCell(Text(unidad, style: TextStyle(fontSize: 18))),
-                      DataCell(Text(cantidad.toString(),
-                          style: TextStyle(fontSize: 18))),
-                      DataCell(Text(valor.toString(),
-                          style: TextStyle(fontSize: 18))),
-                      DataCell(Text(fecha, style: TextStyle(fontSize: 18))),
+                      DataCell(
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Text(nombre, style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Text(unidad, style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
+                            cantidad.toString(),
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Text(valor.toString(), style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      DataCell(
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: Text(fecha, style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
                     ],
                   );
                 }).toList(),
