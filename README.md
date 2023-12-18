@@ -1,18 +1,37 @@
-Armin Herrera 
-# verduleria
+#Ecofresh
 
-Aplicacion de organizacion y registro para insumos de una verduleria , con la funcionalidad de;
-1) guardar compras
-2) ver compras
-3) eliminar compras
-4) separacion de precios unitarios (registro ejemplo 10 cajas , saca precio unitario de caja)
-5) calculo de porcetanje de margen al precio unitario (%)
-6) guardado de ventas generales diarias
-7) calculo de caja total al dia
-8) guardado de de ventas totales por dia
+Descripción
+La aplicación de Verdulería es una herramienta de organización y registro diseñada para simplificar la gestión de insumos en una verdulería. Con funcionalidades clave como el registro de compras, visualización, eliminación de compras, cálculo de precios unitarios, porcentaje de margen, y un seguimiento detallado de las ventas diarias, la aplicación busca mejorar la eficiencia operativa y proporcionar una visión clara de las transacciones comerciales.
 
+Funcionalidades Principales
+Registro de Compras:
 
-## Getting Started
-Aplicacion movil de android , ios y web para administracion de verduleria , utiliza como herramienta principal para front-end widget de Flutter, Backend realiado con poticiones a la Base de datos en Firebase de Google desarrollado en Dart.
+Permite ingresar y almacenar detalles de las compras realizadas, incluyendo la cantidad, descripción y costo total.
+Visualización de Compras:
 
+Ofrece la capacidad de ver el historial de compras, proporcionando una referencia rápida para la gestión de inventario.
+Eliminación de Compras:
 
+Permite eliminar registros de compras, brindando flexibilidad en la corrección de errores o la gestión de datos obsoletos.
+Separación de Precios Unitarios:
+
+Facilita el cálculo del precio unitario dividiendo el costo total entre la cantidad de unidades compradas.
+Cálculo de Porcentaje de Margen:
+
+Automáticamente calcula el porcentaje de margen en relación con el precio unitario, proporcionando información valiosa para la fijación de precios.
+Registro de Ventas Generales Diarias:
+
+Permite ingresar y almacenar detalles de las ventas realizadas diariamente.
+Cálculo de Caja Total al Día:
+
+Realiza el seguimiento del total de caja al final del día, ayudando en la conciliación y el control financiero.
+Registro de Ventas Totales por Día:
+
+Proporciona una visión completa de las ventas totales por día, permitiendo un análisis detallado del rendimiento comercial.
+Inicio Rápido
+La aplicación está disponible para Android, iOS y en versión web. Utiliza Flutter para el desarrollo del front-end y Dart para el back-end, que se comunica con una base de datos Firebase de Google.
+
+Equipo de Proyecto
+Bastian Pezo - Diseñador
+Cristofer Mondaca - Desarrollador
+Armin Herrera - Arquitecto
